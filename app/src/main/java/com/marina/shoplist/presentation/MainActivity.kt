@@ -9,6 +9,7 @@ import com.marina.shoplist.R
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
+    private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.shopList.observe(this) {
             Log.d("TAGGY", it.toString())
+            if (count == 0) {
+                val item = it[0]
+                count++
+                viewModel.changeEnableState(item)
+            }
         }
-        viewModel.getShopList()
     }
 }
