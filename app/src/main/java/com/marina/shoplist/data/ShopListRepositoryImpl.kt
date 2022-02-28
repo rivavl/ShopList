@@ -8,7 +8,7 @@ import com.marina.shoplist.domain.ShopListRepository
 object ShopListRepositoryImpl : ShopListRepository {
 
     private val shopListLiveData = MutableLiveData<List<ShopItem>>()
-    private val shopList = mutableListOf<ShopItem>()
+    private val shopList = sortedSetOf<ShopItem>({ p0, p1 -> p0.id.compareTo(p1.id)})
     private var autoIncrementedId = 0
 
     init {
