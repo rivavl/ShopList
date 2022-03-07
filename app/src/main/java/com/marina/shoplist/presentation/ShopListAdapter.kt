@@ -1,5 +1,6 @@
 package com.marina.shoplist.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.marina.shoplist.R
 import com.marina.shoplist.domain.ShopItem
 
 class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
-
+    var count = 0
     var shopList = listOf<ShopItem>()
         set(value) {
             field = value
@@ -36,6 +37,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
     }
 
     override fun onBindViewHolder(viewHolder: ShopItemViewHolder, position: Int) {
+        Log.d("ShopListAdapter", "onBindViewHolder, count: ${++count}")
         val shopItem = shopList[position]
 
         viewHolder.view.setOnLongClickListener {
