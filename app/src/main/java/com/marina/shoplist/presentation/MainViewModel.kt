@@ -1,5 +1,7 @@
 package com.marina.shoplist.presentation
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.marina.shoplist.data.ShopListRepositoryImpl
@@ -10,9 +12,9 @@ import com.marina.shoplist.domain.ShopItem
 
 // if we need context -> AndroidViewModel()
 // if not -> ViewModel()
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = ShopListRepositoryImpl
+    private val repository = ShopListRepositoryImpl(application)
 
     private val getShopListUseCase = GetShopListUseCase(repository)
     private val removeShopItemUseCase = RemoveShopItemUseCase(repository)
