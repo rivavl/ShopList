@@ -2,6 +2,8 @@ package com.marina.shoplist.data
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Transformations
 import com.marina.shoplist.domain.ShopItem
 import com.marina.shoplist.domain.ShopListRepository
 
@@ -25,7 +27,10 @@ class ShopListRepositoryImpl(
         return mapper.mapDbModelToEntity(dbModel)
     }
 
-    override fun getShopList(): LiveData<List<ShopItem>> = shopListDao.getShopList()
+    override fun getShopList(): LiveData<List<ShopItem>> =
+        Transformations.map(shopListDao.getShopList()) {
+            mapper.mapListDbModelToListEntity(it)
+        }
 
     override fun removeShopItem(shopItem: ShopItem) {
         shopListDao.deleteItem(shopItem.id)
