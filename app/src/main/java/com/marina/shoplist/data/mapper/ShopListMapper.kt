@@ -1,6 +1,7 @@
-package com.marina.shoplist.data
+package com.marina.shoplist.data.mapper
 
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.data.database.ShopItemDbModel
+import com.marina.shoplist.domain.entity.ShopItem
 
 class ShopListMapper {
 

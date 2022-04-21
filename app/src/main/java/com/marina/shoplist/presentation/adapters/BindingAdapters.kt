@@ -1,4 +1,4 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.adapters
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout

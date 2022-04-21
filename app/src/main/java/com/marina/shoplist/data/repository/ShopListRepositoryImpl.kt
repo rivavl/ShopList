@@ -1,11 +1,12 @@
-package com.marina.shoplist.data
+package com.marina.shoplist.data.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Transformations
-import com.marina.shoplist.domain.ShopItem
-import com.marina.shoplist.domain.ShopListRepository
+import com.marina.shoplist.data.database.AppDatabase
+import com.marina.shoplist.data.mapper.ShopListMapper
+import com.marina.shoplist.domain.entity.ShopItem
+import com.marina.shoplist.domain.repository.ShopListRepository
 
 class ShopListRepositoryImpl(
     application: Application

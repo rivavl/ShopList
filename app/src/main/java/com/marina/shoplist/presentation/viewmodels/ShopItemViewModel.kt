@@ -1,15 +1,15 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.marina.shoplist.data.ShopListRepositoryImpl
-import com.marina.shoplist.domain.AddShopItemUseCase
-import com.marina.shoplist.domain.EditShopItemUseCase
-import com.marina.shoplist.domain.GetShopItemUseCase
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.data.repository.ShopListRepositoryImpl
+import com.marina.shoplist.domain.usecase.AddShopItemUseCase
+import com.marina.shoplist.domain.usecase.EditShopItemUseCase
+import com.marina.shoplist.domain.usecase.GetShopItemUseCase
+import com.marina.shoplist.domain.entity.ShopItem
 import kotlinx.coroutines.launch
 
 class ShopItemViewModel(application: Application) : AndroidViewModel(application) {

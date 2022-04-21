@@ -1,13 +1,13 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.marina.shoplist.data.ShopListRepositoryImpl
-import com.marina.shoplist.domain.EditShopItemUseCase
-import com.marina.shoplist.domain.GetShopListUseCase
-import com.marina.shoplist.domain.RemoveShopItemUseCase
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.data.repository.ShopListRepositoryImpl
+import com.marina.shoplist.domain.usecase.EditShopItemUseCase
+import com.marina.shoplist.domain.usecase.GetShopListUseCase
+import com.marina.shoplist.domain.usecase.RemoveShopItemUseCase
+import com.marina.shoplist.domain.entity.ShopItem
 import kotlinx.coroutines.launch
 
 // if we need context -> AndroidViewModel()

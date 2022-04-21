@@ -1,4 +1,4 @@
-package com.marina.shoplist.domain
+package com.marina.shoplist.domain.entity
 
 data class ShopItem(
     var name: String,

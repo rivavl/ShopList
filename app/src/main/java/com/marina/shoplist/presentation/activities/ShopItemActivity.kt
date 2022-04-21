@@ -1,18 +1,12 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.activities
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.textfield.TextInputLayout
 import com.marina.shoplist.R
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.domain.entity.ShopItem
+import com.marina.shoplist.presentation.fragments.ShopItemFragment
 import java.lang.RuntimeException
 
 class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {

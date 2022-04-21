@@ -1,4 +1,4 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.marina.shoplist.R
 import com.marina.shoplist.databinding.ItemShopDisabledBinding
 import com.marina.shoplist.databinding.ItemShopEnabledBinding
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.domain.entity.ShopItem
+import com.marina.shoplist.presentation.ShopItemDiffCallback
+import com.marina.shoplist.presentation.ShopItemViewHolder
 
 class ShopListAdapter :
     ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCallback()) {

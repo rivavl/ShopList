@@ -1,4 +1,4 @@
-package com.marina.shoplist.data
+package com.marina.shoplist.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

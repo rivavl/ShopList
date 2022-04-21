@@ -1,6 +1,7 @@
-package com.marina.shoplist.domain
+package com.marina.shoplist.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.marina.shoplist.domain.entity.ShopItem
 
 interface ShopListRepository {
 

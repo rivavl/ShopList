@@ -1,4 +1,7 @@
-package com.marina.shoplist.domain
+package com.marina.shoplist.domain.usecase
+
+import com.marina.shoplist.domain.entity.ShopItem
+import com.marina.shoplist.domain.repository.ShopListRepository
 
 class GetShopItemUseCase(private val shopListRepository: ShopListRepository) {
 

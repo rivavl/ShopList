@@ -1,4 +1,4 @@
-package com.marina.shoplist.data
+package com.marina.shoplist.data.database
 
 import android.app.Application
 import androidx.room.Database

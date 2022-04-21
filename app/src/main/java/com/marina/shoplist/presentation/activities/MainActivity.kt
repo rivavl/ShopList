@@ -1,4 +1,4 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.activities
 
 import android.os.Bundle
 import android.widget.Toast
@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.marina.shoplist.R
 import com.marina.shoplist.databinding.ActivityMainBinding
+import com.marina.shoplist.presentation.fragments.ShopItemFragment
+import com.marina.shoplist.presentation.adapters.ShopListAdapter
+import com.marina.shoplist.presentation.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 

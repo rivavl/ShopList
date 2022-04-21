@@ -1,7 +1,7 @@
 package com.marina.shoplist.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.domain.entity.ShopItem
 
 class ShopItemDiffCallback : DiffUtil.ItemCallback<ShopItem>() {
     override fun areItemsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {

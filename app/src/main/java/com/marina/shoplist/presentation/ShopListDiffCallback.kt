@@ -1,7 +1,7 @@
 package com.marina.shoplist.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.domain.entity.ShopItem
 
 class ShopListDiffCallback(
     private val oldList: List<ShopItem>,

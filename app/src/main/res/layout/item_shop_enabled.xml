@@ -5,7 +5,7 @@
 
         <variable
             name="shopItem"
-            type="com.marina.shoplist.domain.ShopItem" />
+            type="com.marina.shoplist.domain.entity.ShopItem" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

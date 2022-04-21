@@ -1,4 +1,4 @@
-package com.marina.shoplist.presentation
+package com.marina.shoplist.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.marina.shoplist.R
 import com.marina.shoplist.databinding.FragmentShopItemBinding
-import com.marina.shoplist.domain.ShopItem
+import com.marina.shoplist.domain.entity.ShopItem
+import com.marina.shoplist.presentation.viewmodels.ShopItemViewModel
 
 class ShopItemFragment : Fragment() {
 
