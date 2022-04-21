@@ -1,19 +1,17 @@
 package com.marina.shoplist.data.repository
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.marina.shoplist.data.database.AppDatabase
+import com.marina.shoplist.data.database.ShopListDao
 import com.marina.shoplist.data.mapper.ShopListMapper
 import com.marina.shoplist.domain.entity.ShopItem
 import com.marina.shoplist.domain.repository.ShopListRepository
+import javax.inject.Inject
 
-class ShopListRepositoryImpl(
-    application: Application
+class ShopListRepositoryImpl @Inject constructor(
+    private val shopListDao: ShopListDao,
+    private val mapper: ShopListMapper
 ) : ShopListRepository {
-
-    private val shopListDao = AppDatabase.getInstance(application).shopListDao()
-    private val mapper = ShopListMapper()
 
     override suspend fun addShopItem(shopItem: ShopItem) {
         shopListDao.addShopItem(mapper.mapEntityToDbModel(shopItem))

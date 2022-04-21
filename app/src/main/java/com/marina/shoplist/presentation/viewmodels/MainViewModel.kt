@@ -2,6 +2,7 @@ package com.marina.shoplist.presentation.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marina.shoplist.data.repository.ShopListRepositoryImpl
 import com.marina.shoplist.domain.usecase.EditShopItemUseCase
@@ -9,16 +10,15 @@ import com.marina.shoplist.domain.usecase.GetShopListUseCase
 import com.marina.shoplist.domain.usecase.RemoveShopItemUseCase
 import com.marina.shoplist.domain.entity.ShopItem
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 // if we need context -> AndroidViewModel()
 // if not -> ViewModel()
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = ShopListRepositoryImpl(application)
-
-    private val getShopListUseCase = GetShopListUseCase(repository)
-    private val removeShopItemUseCase = RemoveShopItemUseCase(repository)
-    private val editShopItemUseCase = EditShopItemUseCase(repository)
+class MainViewModel @Inject constructor(
+    private val getShopListUseCase: GetShopListUseCase,
+    private val removeShopItemUseCase: RemoveShopItemUseCase,
+    private val editShopItemUseCase: EditShopItemUseCase
+) : ViewModel() {
 
     val shopList = getShopListUseCase.getShopList()
 

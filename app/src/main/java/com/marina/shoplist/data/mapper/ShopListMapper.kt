@@ -2,8 +2,9 @@ package com.marina.shoplist.data.mapper
 
 import com.marina.shoplist.data.database.ShopItemDbModel
 import com.marina.shoplist.domain.entity.ShopItem
+import javax.inject.Inject
 
-class ShopListMapper {
+class ShopListMapper @Inject constructor() {
 
     fun mapEntityToDbModel(shopItem: ShopItem) = ShopItemDbModel(
         id = shopItem.id,
