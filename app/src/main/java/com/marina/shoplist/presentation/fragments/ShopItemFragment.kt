@@ -1,6 +1,8 @@
 package com.marina.shoplist.presentation.fragments
 
+import android.content.ContentValues
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +17,7 @@ import com.marina.shoplist.presentation.ShopApplication
 import com.marina.shoplist.presentation.viewmodels.ShopItemViewModel
 import com.marina.shoplist.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
+import kotlin.concurrent.thread
 
 class ShopItemFragment : Fragment() {
 
@@ -121,10 +124,23 @@ class ShopItemFragment : Fragment() {
 
     private fun launchAddMode() {
         binding.saveButton.setOnClickListener {
-            viewModel.addShopItem(
-                binding.etName.text?.toString(),
-                binding.etCount.text?.toString()
-            )
+//            viewModel.addShopItem(
+//                binding.etName.text?.toString(),
+//                binding.etCount.text?.toString()
+//            )
+
+            thread {
+                // вставляем данные в бд при помощи контент провайдера
+                context?.contentResolver?.insert(
+                    Uri.parse("content://com.marina.shoplist/shop_items"),
+                    ContentValues().apply {
+                        put("id", 0)
+                        put("name", binding.etName.text?.toString())
+                        put("count", binding.etCount.text?.toString()?.toInt())
+                        put("enabled", true)
+                    }
+                )
+            }
         }
     }
 

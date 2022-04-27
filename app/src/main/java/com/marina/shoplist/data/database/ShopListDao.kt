@@ -17,6 +17,10 @@ interface ShopListDao {
     @Query("SELECT * FROM shop_items")
     fun getShopListCursor(): Cursor
 
+    // метод для контент провайдера
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addShopItemSync(shopItemDbModel: ShopItemDbModel)
+
     // если есть с таким же id, он перезапишется
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addShopItem(shopItemDbModel: ShopItemDbModel)
