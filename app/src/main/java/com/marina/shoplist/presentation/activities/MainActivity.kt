@@ -138,9 +138,18 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 //получаем элемент, который свайпнули
                 val item = shopListAdapter.currentList[viewHolder.adapterPosition]
-                viewModel.removeShopItem(item)
-            }
+//                viewModel.removeShopItem(item)
 
+
+                thread {
+                    // реализация с помощью контент провайдера
+                    contentResolver.delete(
+                        Uri.parse("content://com.marina.shoplist/shop_items"),
+                        null,
+                        arrayOf(item.id.toString())
+                    )
+                }
+            }
         }
 
         val itemTouchHelper = ItemTouchHelper(callback)

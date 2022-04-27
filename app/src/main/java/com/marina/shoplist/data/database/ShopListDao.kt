@@ -25,6 +25,11 @@ interface ShopListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addShopItem(shopItemDbModel: ShopItemDbModel)
 
+    // метод для контент провайдера
+    // возвращает кол-во удаленных строк
+    @Query("DELETE FROM shop_items WHERE id=:shopItemId")
+    fun deleteItemSync(shopItemId: Int): Int
+
     @Query("DELETE FROM shop_items WHERE id=:shopItemId")
     suspend fun deleteItem(shopItemId: Int)
 
