@@ -5,9 +5,18 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.util.Log
+import com.marina.shoplist.data.database.ShopListDao
+import com.marina.shoplist.presentation.ShopApplication
+import javax.inject.Inject
 
 class ShopListProvider : ContentProvider() {
+
+    private val component by lazy {
+        (context as ShopApplication).component
+    }
+
+    @Inject
+    lateinit var shopListDao: ShopListDao
 
 
     // используется для проверки uri в query()
@@ -27,9 +36,12 @@ class ShopListProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
+        component.inject(this)
         return true
     }
 
+
+    // объект Cursor позволяет читать данные
     override fun query(
         uri: Uri,
         projection: Array<out String>?,
@@ -37,14 +49,14 @@ class ShopListProvider : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        val code = uriMatcher.match(uri)
-        when (code) {
+        return when (uriMatcher.match(uri)) {
             GET_SHOP_ITEMS_QUERY -> {
-
+                shopListDao.getShopListCursor()
+            }
+            else -> {
+                null
             }
         }
-        Log.d("ShopListProvider", "query $uri code $code")
-        return null
     }
 
     override fun getType(uri: Uri): String? {

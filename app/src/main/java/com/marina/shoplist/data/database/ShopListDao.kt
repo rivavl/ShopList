@@ -1,5 +1,6 @@
 package com.marina.shoplist.data.database
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -11,6 +12,10 @@ interface ShopListDao {
 
     @Query("SELECT * FROM shop_items")
     fun getShopList(): LiveData<List<ShopItemDbModel>>
+
+    // метод для контент провайдера
+    @Query("SELECT * FROM shop_items")
+    fun getShopListCursor(): Cursor
 
     // если есть с таким же id, он перезапишется
     @Insert(onConflict = OnConflictStrategy.REPLACE)
