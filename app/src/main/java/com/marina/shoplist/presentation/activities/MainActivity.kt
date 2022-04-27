@@ -1,6 +1,8 @@
 package com.marina.shoplist.presentation.activities
 
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -9,12 +11,14 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.marina.shoplist.R
 import com.marina.shoplist.databinding.ActivityMainBinding
+import com.marina.shoplist.domain.entity.ShopItem
 import com.marina.shoplist.presentation.ShopApplication
 import com.marina.shoplist.presentation.adapters.ShopListAdapter
 import com.marina.shoplist.presentation.fragments.ShopItemFragment
 import com.marina.shoplist.presentation.viewmodels.MainViewModel
 import com.marina.shoplist.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
@@ -46,7 +50,36 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
             } else {
                 launchFragment(ShopItemFragment.newInstanceAddItem())
             }
+        }
 
+        thread {
+            // объект contentResolver вызывает метод query() у контент провайдера
+            val cursor = contentResolver.query(
+                Uri.parse("content://com.marina.shoplist/shop_items"),
+                null,
+                null,
+                null,
+                null
+            )
+
+            // получение данных из курсора
+            while (cursor?.moveToNext() == true) {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+                val count = cursor.getInt(cursor.getColumnIndexOrThrow("count"))
+                // нет метода cursor.getBoolean()
+                val enabled = cursor.getInt(cursor.getColumnIndexOrThrow("enabled")) > 0
+
+                val shopItem = ShopItem(
+                    id = id,
+                    name = name,
+                    count = count,
+                    enabled = enabled
+                )
+                Log.d("QQQQQQQQ", shopItem.toString())
+            }
+            // курсор хранит ссылку на бд, ноэтому надо его освободить
+            cursor?.close()
         }
     }
 
@@ -105,9 +138,18 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 //получаем элемент, который свайпнули
                 val item = shopListAdapter.currentList[viewHolder.adapterPosition]
-                viewModel.removeShopItem(item)
-            }
+//                viewModel.removeShopItem(item)
 
+
+                thread {
+                    // реализация с помощью контент провайдера
+                    contentResolver.delete(
+                        Uri.parse("content://com.marina.shoplist/shop_items"),
+                        null,
+                        arrayOf(item.id.toString())
+                    )
+                }
+            }
         }
 
         val itemTouchHelper = ItemTouchHelper(callback)
