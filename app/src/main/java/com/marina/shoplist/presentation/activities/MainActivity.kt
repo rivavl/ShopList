@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
             }
         }
 
+        // объект contentResolver вызывает метод query() у контент провайдера
         contentResolver.query(
             Uri.parse("content://com.marina.shoplist/shop_items"),
             null,
